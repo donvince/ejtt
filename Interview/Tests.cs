@@ -27,13 +27,21 @@ namespace Interview
         }
 
         [Test]
-        public void TestAll()
+        public void TestAllWithOneItem()
         {
             IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
             var dataItem = new DataItem(id: 4) { Name = "TestAll" };
             repo.Save(dataItem);
             var result = repo.All();
             Assert.AreEqual(1, result.Count());
+        }
+
+        [Test]
+        public void TestAllWithZeroItems()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var result = repo.All();
+            Assert.AreEqual(0, result.Count());
         }
 
         [Test]
