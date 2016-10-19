@@ -13,7 +13,7 @@ namespace Interview
             IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
             var dataItem = new DataItem(id: 2) { Name = "TestFindById" };
             repo.Save(dataItem);
-            var result = repo.FindById(2);
+            var result = repo.FindById(dataItem.Id);
             Assert.AreEqual(dataItem, result);
         }
 
