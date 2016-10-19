@@ -1,5 +1,6 @@
 using System.Linq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Interview
 {
@@ -49,6 +50,16 @@ namespace Interview
             IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
             var result = repo.FindById(5);
             Assert.IsNull(result, "Assumed behaviour of returning (null) in case of item not found not evident.");
+        }
+
+        [Test]
+        [ExpectedException(
+            ExpectedException = typeof(KeyNotFoundException), 
+            UserMessage = "Assumed behaviour of throwing an exception in case of item not found not evident.")]
+        public void TestDeleteNonExistentItem()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            repo.Delete(6);
         }
     }
 }

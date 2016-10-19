@@ -20,7 +20,10 @@ namespace Interview
 
         public void Delete(IComparable id)
         {
-            repository.Remove(id);
+            if (!repository.Remove(id))
+            {
+                throw new KeyNotFoundException("Requested Id to remove does not exist in repository");
+            }
         }
 
         public T FindById(IComparable id)
