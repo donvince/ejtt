@@ -54,7 +54,7 @@ namespace Interview
 
         [Test]
         [ExpectedException(
-            ExpectedException = typeof(KeyNotFoundException), 
+            ExpectedException = typeof(KeyNotFoundException),
             UserMessage = "Assumed behaviour of throwing an exception in case of item not found not evident.")]
         public void TestDeleteNonExistentItem()
         {
@@ -97,6 +97,17 @@ namespace Interview
             repo.Save(dataItem2);
             var result = repo.FindById(7);
             Assert.AreEqual(dataItem2, result);
+        }
+
+        [Test]
+        public void TestMutateItemAfterSaving()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var dataItem = new DataItem(id: 8) { Name = "TestMutateItemAfterSaving(Before)" };
+            repo.Save(dataItem);
+            dataItem.Name = "TestMutateItemAfterSaving(After)";
+            var result = repo.FindById(dataItem.Id);
+            Assert.AreEqual(dataItem, result);
         }
     }
 }
