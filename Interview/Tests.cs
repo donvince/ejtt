@@ -61,5 +61,30 @@ namespace Interview
             IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
             repo.Delete(6);
         }
+
+        [Test]
+        public void TestMultipleEntries()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+
+            var dataItem1 = new DataItem(id: 1) { Name = "TestMultipleEntries(1)" };
+            var dataItem2 = new DataItem(id: "1") { Name = "TestMultipleEntries('1')" };
+            var dataItem3 = new DataItem(id: "One") { Name = "TestMultipleEntries(One)" };
+            var dataItem4 = new DataItem(id: "Two") { Name = "TestMultipleEntries(Two)" };
+
+            repo.Save(dataItem1);
+            repo.Save(dataItem2);
+            repo.Save(dataItem3);
+            repo.Save(dataItem4);
+
+            var result1 = repo.FindById(dataItem1.Id);
+            Assert.AreEqual(dataItem1, result1);
+            var result2 = repo.FindById(dataItem2.Id);
+            Assert.AreEqual(dataItem2, result2);
+            var result3 = repo.FindById(dataItem3.Id);
+            Assert.AreEqual(dataItem3, result3);
+            var result4 = repo.FindById(dataItem4.Id);
+            Assert.AreEqual(dataItem4, result4);
+        }
     }
 }
