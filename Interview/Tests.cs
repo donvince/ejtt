@@ -8,14 +8,6 @@ namespace Interview
     public class Tests
     {
         [Test]
-        public void TestSave()
-        {
-            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
-            var dataItem = new DataItem(id: 1) { Name = "TestSave" };
-            repo.Save(dataItem);
-        }
-
-        [Test]
         public void TestFindById()
         {
             IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
