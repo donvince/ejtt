@@ -21,7 +21,7 @@ namespace Interview
 
         public void Delete(IComparable id)
         {
-            throw new NotImplementedException();
+            repository.Remove(id);
         }
 
         public T FindById(IComparable id)
