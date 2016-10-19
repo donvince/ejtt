@@ -25,6 +25,10 @@ namespace Interview
 
         public T FindById(IComparable id)
         {
+            if (!repository.ContainsKey(id))
+            {
+                return default(T);
+            }
             return repository[id];
         }
 

@@ -42,5 +42,13 @@ namespace Interview
             var result = repo.All();
             Assert.AreEqual(1, result.Count());
         }
+
+        [Test]
+        public void TestMissingItemFindById()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var result = repo.FindById(5);
+            Assert.IsNull(result, "Assumed behaviour of returning (null) in case of item not found not evident.");
+        }
     }
 }
