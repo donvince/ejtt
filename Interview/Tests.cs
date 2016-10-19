@@ -1,8 +1,5 @@
-using System.Diagnostics;
 using System.Linq;
-using System;
 using NUnit.Framework;
-using Interview;
 
 namespace Interview
 {
