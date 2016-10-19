@@ -35,5 +35,15 @@ namespace Interview
             repo.Save(dataItem);
             repo.Delete(dataItem.Id);
         }
+
+        [Test]
+        public void TestAll()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var dataItem = new DataItem(id: 4) { Name = "TestAll" };
+            repo.Save(dataItem);
+            var result = repo.All();
+            Assert.AreEqual(1, result.Count());
+        }
     }
 }
