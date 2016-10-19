@@ -86,5 +86,17 @@ namespace Interview
             var result4 = repo.FindById(dataItem4.Id);
             Assert.AreEqual(dataItem4, result4);
         }
+
+        [Test]
+        public void TestUpdate()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var dataItem1 = new DataItem(id: 7) { Name = "TestUpdate(Before)" };
+            var dataItem2 = new DataItem(id: 7) { Name = "TestUpdate(After)" };
+            repo.Save(dataItem1);
+            repo.Save(dataItem2);
+            var result = repo.FindById(7);
+            Assert.AreEqual(dataItem2, result);
+        }
     }
 }

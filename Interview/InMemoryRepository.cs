@@ -37,7 +37,7 @@ namespace Interview
 
         public void Save(T item)
         {
-            repository.Add(item.Id, item);
+            repository[item.Id] = item;
         }
     }
 }
