@@ -16,5 +16,15 @@ namespace Interview
             var dataItem = new DataItem(id: 1) { Name = "TestSave" };
             repo.Save(dataItem);
         }
+
+        [Test]
+        public void TestFindById()
+        {
+            IRepository<DataItem> repo = new InMemoryRepository<DataItem>();
+            var dataItem = new DataItem(id: 1) { Name = "TestSave" };
+            repo.Save(dataItem);
+            var result = repo.FindById(1);
+            Assert.AreEqual(dataItem, result);
+        }
     }
 }
